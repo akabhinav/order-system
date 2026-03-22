@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PlaceOrderConcurrentLoadTest {
 
-    private static final int REQUESTS_PER_SECOND = 10;
+    private static final int REQUESTS_PER_SECOND = 50;
     private static final int DURATION_SECONDS = 10;
     private static final int TOTAL_REQUESTS = REQUESTS_PER_SECOND * DURATION_SECONDS;
 
