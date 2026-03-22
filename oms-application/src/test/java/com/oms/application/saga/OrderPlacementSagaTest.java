@@ -121,12 +121,9 @@ class OrderPlacementSagaTest {
     @Test
     void shouldCompensateStep2AndStep1WhenStep3Fails() {
         when(orderRepository.findById(orderId))
-                .thenReturn(Optional.of(placedOrder))
-                .thenReturn(Optional.of(placedOrder))
                 .thenReturn(Optional.of(placedOrder));
         when(orderRepository.save(any(Order.class)))
-                .thenThrow(new RuntimeException("DB error on confirm"))
-                .thenAnswer(inv -> inv.getArgument(0));
+                .thenThrow(new RuntimeException("DB error on confirm"));
 
         SagaState result = saga.execute(orderId, command);
 

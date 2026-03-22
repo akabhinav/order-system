@@ -115,7 +115,7 @@ public class OrderPlacementSaga {
                 s -> {
                     Order order = orderRepository.findById(orderId)
                             .orElseThrow(() -> new IllegalStateException("Order not found during saga confirm: " + orderId));
-                    Order confirmedOrder = order.confirm();
+                    Order confirmedOrder = order.startPaymentProcessing().confirm();
                     List<DomainEvent> events = confirmedOrder.pendingEvents();
                     orderRepository.save(confirmedOrder);
                     eventPublisher.publish(events);

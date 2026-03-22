@@ -65,7 +65,7 @@ class CancelOrderUseCaseTest {
         @SuppressWarnings("unchecked")
         ArgumentCaptor<List<DomainEvent>> eventsCaptor = ArgumentCaptor.forClass(List.class);
         verify(eventPublisher).publish(eventsCaptor.capture());
-        assertThat(eventsCaptor.getValue()).hasSize(1);
+        assertThat(eventsCaptor.getValue()).hasSize(2); // OrderPlacedEvent + OrderCancelledEvent
     }
 
     @Test
