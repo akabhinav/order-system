@@ -12,6 +12,7 @@ import com.oms.domain.model.OrderId;
 import com.oms.domain.port.inbound.CancelOrderUseCase;
 import com.oms.domain.port.inbound.GetOrderUseCase;
 import com.oms.domain.port.inbound.PlaceOrderUseCase;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,7 @@ public class OrderController {
     }
 
     @PostMapping
+    @RateLimiter(name = "place-order")
     public ResponseEntity<Void> placeOrder(
             @Valid @RequestBody PlaceOrderRequest request,
             @RequestHeader("Idempotency-Key") UUID idempotencyKey) {

@@ -1,7 +1,6 @@
 package com.oms.config;
 
 import com.oms.application.saga.OrderPlacementSaga;
-import com.oms.application.saga.OrderPlacementSagaOrchestrator;
 import com.oms.application.saga.SagaOrchestrator;
 import com.oms.application.saga.SagaStateRepository;
 import com.oms.application.usecase.CancelOrderUseCaseImpl;
@@ -49,8 +48,6 @@ public class ApplicationConfig {
         return new OrderPlacementSaga(orderRepository, eventPublisher, inventoryPort, paymentPort, sagaStateRepository);
     }
 
-    @Bean
-    public SagaOrchestrator sagaOrchestrator(OrderPlacementSaga orderPlacementSaga) {
-        return new OrderPlacementSagaOrchestrator(orderPlacementSaga);
-    }
+    // SagaOrchestrator bean is provided by AsyncSagaOrchestrator (@Component)
+    // in oms-infrastructure, which dispatches saga execution to virtual threads
 }
