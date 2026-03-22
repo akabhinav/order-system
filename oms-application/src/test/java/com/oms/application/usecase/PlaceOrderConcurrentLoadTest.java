@@ -32,7 +32,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PlaceOrderConcurrentLoadTest {
 
-    private static final int REQUESTS_PER_SECOND = 50;
+    private static final int REQUESTS_PER_SECOND = 1000;
     private static final int DURATION_SECONDS = 10;
     private static final int TOTAL_REQUESTS = REQUESTS_PER_SECOND * DURATION_SECONDS;
 
@@ -159,8 +159,8 @@ class PlaceOrderConcurrentLoadTest {
                 .isLessThan(1.0);
 
         assertThat(p99)
-                .as("P99 latency should be below 200ms (with simulated I/O ~11ms per request)")
-                .isLessThan(200);
+                .as("P99 latency should be below 500ms at %d req/s", REQUESTS_PER_SECOND)
+                .isLessThan(500);
 
         assertThat(successCount.get())
                 .as("All %d requests should succeed", TOTAL_REQUESTS)
