@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@org.springframework.context.annotation.Profile("!loadtest")
 public class KafkaConfig {
 
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")

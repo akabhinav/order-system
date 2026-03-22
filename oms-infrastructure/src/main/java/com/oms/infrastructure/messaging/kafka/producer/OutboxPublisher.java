@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Runs on a fixed delay to ensure at-least-once delivery.
  */
 @Component
+@org.springframework.context.annotation.Profile("!loadtest")
 public class OutboxPublisher {
 
     private static final Logger log = LoggerFactory.getLogger(OutboxPublisher.class);

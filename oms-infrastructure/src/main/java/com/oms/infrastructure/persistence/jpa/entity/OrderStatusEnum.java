@@ -5,10 +5,14 @@ package com.oms.infrastructure.persistence.jpa.entity;
  * Kept separate so infrastructure layer does not leak JPA annotations into the domain.
  */
 public enum OrderStatusEnum {
-    PLACED,
+    PENDING,
+    PAYMENT_PROCESSING,
     CONFIRMED,
-    CANCELLED,
+    PICKING,
+    PACKED,
     SHIPPED,
     DELIVERED,
-    REFUNDED
+    REFUND_REQUESTED,
+    REFUNDED,
+    CANCELLED
 }

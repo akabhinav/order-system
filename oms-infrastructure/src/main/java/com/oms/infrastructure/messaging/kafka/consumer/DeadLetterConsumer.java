@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
  * Consumes messages from the dead letter queue topic for monitoring and alerting.
  */
 @Component
+@org.springframework.context.annotation.Profile("!loadtest")
 public class DeadLetterConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(DeadLetterConsumer.class);
